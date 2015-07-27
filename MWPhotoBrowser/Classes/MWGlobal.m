@@ -28,7 +28,8 @@ NSString *MWLocalize(NSString *stringToken) {
 
 UIImage *MWImage(NSString *imageName) {
     if(mwBundle()) {
-        return [UIImage imageNamed:imageName inBundle:mwBundle() compatibleWithTraitCollection:nil];
+        NSString *imagePath = [mwBundle() pathForResource:[[imageName lastPathComponent] stringByDeletingPathExtension] ofType:[imageName pathExtension]];
+        return [UIImage imageNamed:imagePath];
     } else {
         return [UIImage new];
     }
